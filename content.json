@@ -1,0 +1,171 @@
+{
+  "brand": "Nexura Studio",
+  "hero": {
+    "eyebrow": "WEBSITE • CREATIVE • TRACKING • GROWTH",
+    "title": "Turn Your Online Business Into a Measurable Growth System",
+    "text": "Website, product video advertising, GTM, GA4, Meta Pixel, Conversions API, Microsoft Clarity and retargeting — designed as one connected system.",
+    "heroImage": "assets/placeholder.svg",
+    "primaryCta": "Book a Consultation",
+    "secondaryCta": "View My Work"
+  },
+  "contact": {
+    "whatsapp": "8801000000000",
+    "phone": "+8801000000000",
+    "messenger": "https://m.me/",
+    "meeting": "https://meet.google.com/",
+    "email": "hello@example.com"
+  },
+  "tracking": {
+    "gtmId": "",
+    "ga4MeasurementId": "",
+    "metaPixelId": "",
+    "clarityProjectId": ""
+  },
+  "services": [
+    [
+      "Website Design",
+      "Landing pages, business websites, product pages and conversion-focused interfaces.",
+      "Website"
+    ],
+    [
+      "Product Video Advertising",
+      "Hooks, product ads, short-form videos, motion graphics, captions, sound and CTA-focused editing.",
+      "Creative"
+    ],
+    [
+      "Tracking & Analytics",
+      "GTM, GA4 events, User Exploration, Microsoft Clarity and conversion measurement.",
+      "Analytics"
+    ],
+    [
+      "Meta Tracking",
+      "Meta Pixel, Conversions API architecture, event parameters and deduplication planning.",
+      "Meta"
+    ],
+    [
+      "Retargeting",
+      "Audience strategy for visitors, engagement, product views, CTA clicks and leads.",
+      "Growth"
+    ],
+    [
+      "Monthly Support",
+      "Ongoing implementation, measurement, campaign analysis and one-to-one mentorship.",
+      "Support"
+    ]
+  ],
+  "portfolio": [
+    {
+      "title": "Product Advertisement Demo",
+      "type": "Video",
+      "media": "",
+      "image": "assets/placeholder.svg",
+      "description": "Replace this demo with your own product advertisement.",
+      "tags": [
+        "Hook",
+        "Motion",
+        "CTA"
+      ]
+    },
+    {
+      "title": "Landing Page Demo",
+      "type": "Image",
+      "media": "assets/placeholder.svg",
+      "image": "assets/placeholder.svg",
+      "description": "Replace this placeholder with a real landing-page screenshot.",
+      "tags": [
+        "UI",
+        "Conversion"
+      ]
+    },
+    {
+      "title": "Analytics Dashboard Demo",
+      "type": "Image",
+      "media": "assets/placeholder.svg",
+      "image": "assets/placeholder.svg",
+      "description": "Use a fictional/demo dashboard screenshot here.",
+      "tags": [
+        "GA4",
+        "GTM",
+        "Analytics"
+      ]
+    }
+  ],
+  "skills": [
+    "Google Tag Manager",
+    "Google Analytics 4",
+    "Microsoft Clarity",
+    "Meta Pixel",
+    "Conversions API",
+    "Meta Ads",
+    "Retargeting",
+    "Video Editing",
+    "Motion Graphics",
+    "Website Design",
+    "Landing Page Design",
+    "Conversion Tracking",
+    "Analytics",
+    "Content Planning",
+    "Product Advertising"
+  ],
+  "tools": [
+    "Adobe Premiere Pro",
+    "After Effects",
+    "DaVinci Resolve",
+    "Blender",
+    "FL Studio",
+    "Google Tag Manager",
+    "GA4",
+    "Microsoft Clarity",
+    "Meta Ads Manager",
+    "GitHub Pages",
+    "AI tools"
+  ],
+  "packages": [
+    [
+      "Tracking Setup",
+      "GTM + GA4 + Meta Pixel + Clarity implementation and event planning."
+    ],
+    [
+      "Website + Tracking",
+      "Conversion-focused website plus measurement setup."
+    ],
+    [
+      "Creative + Advertising",
+      "Product video creative, hooks, CTA and advertising assets."
+    ],
+    [
+      "Complete Digital Setup",
+      "Website + creative + tracking + analytics + retargeting architecture."
+    ],
+    [
+      "Monthly Support",
+      "Ongoing measurement, implementation and marketing support."
+    ],
+    [
+      "One-to-One Mentorship",
+      "Practical consultation and implementation guidance."
+    ]
+  ],
+  "faq": [
+    [
+      "Can you set up tracking on my existing website?",
+      "Yes. The exact setup depends on the website platform, available access and the events you need to measure."
+    ],
+    [
+      "Can you implement Meta Pixel and CAPI?",
+      "Yes. Pixel and server-side CAPI can be planned together, including event parameters and deduplication."
+    ],
+    [
+      "Can you create product advertising videos?",
+      "Yes. Product ads can include hooks, demonstrations, motion graphics, captions, sound design and CTA structure."
+    ],
+    [
+      "Can you provide monthly support?",
+      "Yes. Monthly support can cover implementation, analytics reviews, creative and campaign measurement."
+    ],
+    [
+      "Can you guarantee sales or ROAS?",
+      "No. Results depend on the product, offer, market, creative, landing page, budget and many other factors."
+    ]
+  ]
+}

@@ -1,0 +1,45 @@
+const DEFAULT = {
+  brand:"Nexura Studio",
+  contact:{whatsapp:"8801000000000",phone:"+8801000000000",messenger:"https://m.me/",meeting:"https://meet.google.com/",email:"hello@example.com"},
+  tracking:{gtmId:"",ga4MeasurementId:"",metaPixelId:"",clarityProjectId:""}
+};
+let C={...DEFAULT};
+async function loadContent(){
+  try{const r=await fetch('content.json',{cache:'no-store'});const remote=await r.json();C={...DEFAULT,...remote,contact:{...DEFAULT.contact,...remote.contact},tracking:{...DEFAULT.tracking,...remote.tracking}}}
+  catch(e){console.warn('content.json could not load',e)}
+  render();
+  installGTM();
+}
+function wa(){return `https://wa.me/${String(C.contact.whatsapp||'').replace(/\D/g,'')}`}
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function render(){
+const s=C.services||[],p=C.portfolio||[],f=C.faq||[];
+document.querySelector('#app').innerHTML=`
+<header class="nav"><div class="container navin"><a class="logo" href="#home">${esc(C.brand)}<span>.</span></a><nav class="links">
+<a href="#services">Services</a><a href="#tracking">Tracking</a><a href="#portfolio">Portfolio</a><a href="#skills">Skills</a><a href="#contact">Contact</a></nav><a class="btn primary" href="#contact">Hire Me</a></div></header>
+<main id="home">
+<section class="hero container"><div><div class="eyebrow">${esc(C.hero.eyebrow)}</div><h1>${esc(C.hero.title)}</h1><p>${esc(C.hero.text)}</p><div class="actions"><a class="btn primary" href="#contact">${esc(C.hero.primaryCta)}</a><a class="btn" href="#portfolio">${esc(C.hero.secondaryCta)}</a></div><p class="notice">Practical implementation • measurable tracking • creative production • ongoing support</p></div>
+<div class="hero-media">${C.hero.heroImage?`<img src="${esc(C.hero.heroImage)}" alt="Nexura Studio hero visual" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:''}<div class="placeholder" style="${C.hero.heroImage?'display:none':''}"><div><b>Add your hero image or video</b><br>Admin panel → Content → Hero Media</div></div><div class="dash"><div class="dashgrid"><div class="metric"><b>GTM</b><small>Events</small></div><div class="metric"><b>GA4</b><small>Analytics</small></div><div class="metric"><b>CAPI</b><small>Server-side</small></div><div class="metric"><b>Clarity</b><small>Behavior</small></div></div></div></div></section>
+<section id="services"><div class="container"><div class="section-head"><div class="eyebrow">WHAT I DO</div><h2>One connected system for your online business.</h2><p>Website, creative, measurement and advertising infrastructure designed to work together.</p></div><div class="grid">${s.map(x=>`<article class="card"><span class="tag">${esc(x[2])}</span><h3>${esc(x[0])}</h3><p>${esc(x[1])}</p></article>`).join('')}</div></div></section>
+<section id="tracking"><div class="container"><div class="section-head"><div class="eyebrow">TRACKING ARCHITECTURE</div><h2>Know what happens after the ad click.</h2><p>Use demo data to explain how the systems connect. Never present fictional results as real client results.</p></div>
+<div class="arch"><div class="archbox accent">YOUR WEBSITE</div><div class="archbox">GOOGLE TAG MANAGER</div><div class="archrow"><div class="archbox">GA4<br><small>User Exploration + Events</small></div><div class="archbox">MICROSOFT CLARITY<br><small>Heatmaps + Recordings</small></div><div class="archbox">META PIXEL<br><small>Browser Events</small></div></div><div class="archbox">META EVENTS MANAGER</div><div class="archbox">CONVERSIONS API → EVENT MATCHING / DEDUPLICATION</div></div></div></section>
+<section><div class="container"><div class="section-head"><div class="eyebrow">CUSTOMER JOURNEY</div><h2>From ad click to measurable action.</h2></div><div class="funnel">${["Meta Ad","Website Visit","Product / Service View","Video or Content Engagement","CTA Click","Form Start","Lead / Meeting"].map(x=>`<div class="step">${esc(x)}</div>`).join('')}</div></div></section>
+<section id="portfolio"><div class="container"><div class="section-head"><div class="eyebrow">PORTFOLIO</div><h2>Show, don't just tell.</h2><p>Replace every demo image/video with your real work from the admin panel.</p></div><div class="portfolio">${p.map((x,i)=>`<article class="card"><div class="media">${x.type==='Video'?`<video controls preload="metadata" poster="${esc(x.image||'')}"><source src="${esc(x.media||'')}" type="video/mp4"></video>`:`<img loading="lazy" src="${esc(x.media||x.image||'')}" alt="${esc(x.title)}" onerror="this.outerHTML='<div class=&quot;placeholder&quot;>Add media from Admin</div>'>`}</div><h3>${esc(x.title)}</h3><p>${esc(x.description)}</p>${(x.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</article>`).join('')}</div></div></section>
+<section><div class="container"><div class="section-head"><div class="eyebrow">RETARGETING</div><h2>Turn behavior into useful audiences.</h2><p>Audience construction depends on the platform, available data, consent and campaign objective.</p></div><div class="funnel">${["Cold Audience","Website Visitors","Engaged Visitors","Product / Service Viewers","CTA Clickers","Leads","Customers"].map(x=>`<div class="step">${esc(x)}</div>`).join('')}</div></div></section>
+<section id="skills"><div class="container"><div class="section-head"><div class="eyebrow">SKILLS</div><h2>Tools and skills I use.</h2></div><div class="skillgrid">${(C.skills||[]).map(x=>`<span class="skill">${esc(x)}</span>`).join('')}</div><div class="section-head" style="margin-top:48px"><div class="eyebrow">SOFTWARE</div></div><div class="skillgrid">${(C.tools||[]).map(x=>`<span class="skill">${esc(x)}</span>`).join('')}</div></div></section>
+<section><div class="container"><div class="section-head"><div class="eyebrow">PACKAGES</div><h2>Choose the level of support you need.</h2></div><div class="grid">${(C.packages||[]).map(x=>`<article class="card"><h3>${esc(x[0])}</h3><p>${esc(x[1])}</p><a class="btn primary" style="margin-top:18px" href="#contact">Discuss</a></article>`).join('')}</div></div></section>
+<section class="container"><div class="cta"><div class="eyebrow">BOOK A CONSULTATION</div><h2 style="font:700 40px 'Space Grotesk';margin:10px 0">Let's inspect your online business system.</h2><p style="color:var(--muted)">Ask about website, creative, tracking, analytics or ongoing support.</p><div class="actions"><a class="btn primary" href="${esc(C.contact.meeting)}" target="_blank" rel="noopener">Book Meeting</a><a class="btn" href="${wa()}" target="_blank" rel="noopener">WhatsApp</a><a class="btn" href="${esc(C.contact.messenger)}" target="_blank" rel="noopener">Messenger</a><a class="btn" href="tel:${esc(C.contact.phone)}">Call</a></div></div></section>
+<section class="container"><div class="section-head"><div class="eyebrow">FAQ</div><h2>Questions</h2></div><div class="faq">${f.map(x=>`<details><summary>${esc(x[0])}</summary><p style="color:var(--muted)">${esc(x[1])}</p></details>`).join('')}</div></section>
+<section id="contact"><div class="container contactgrid"><div><div class="section-head"><div class="eyebrow">CONTACT</div><h2>Ready to talk?</h2><p>Use any channel below. Replace the placeholders from Admin → Settings before publishing.</p></div><div class="actions"><a class="btn primary" href="${wa()}" target="_blank" rel="noopener">WhatsApp</a><a class="btn" href="${esc(C.contact.messenger)}" target="_blank" rel="noopener">Messenger</a><a class="btn" href="tel:${esc(C.contact.phone)}">Call</a><a class="btn" href="mailto:${esc(C.contact.email)}">Email</a><a class="btn" href="${esc(C.contact.meeting)}" target="_blank" rel="noopener">Meeting</a></div></div><div class="card"><h3>Privacy & measurement</h3><p>Analytics and advertising technologies may be used to understand website performance and improve marketing. Use appropriate consent and privacy disclosures for your audience and jurisdiction.</p></div></div></section>
+</main><footer class="footer"><div class="container">© ${new Date().getFullYear()} ${esc(C.brand)}. Demo content should be replaced with your real work.</div></footer>
+<div class="mobilebar"><a href="${wa()}" target="_blank">WhatsApp</a><a href="${esc(C.contact.messenger)}" target="_blank">Messenger</a><a href="tel:${esc(C.contact.phone)}">Call</a><a href="${esc(C.contact.meeting)}" target="_blank">Meeting</a></div>
+<a class="adminlink" href="admin.html">Admin</a>`;
+}
+function installGTM(){
+ const id=C.tracking?.gtmId?.trim(); if(!id || !/^GTM-[A-Z0-9]+$/i.test(id)) return;
+ if(window.__gtmInstalled)return; window.__gtmInstalled=true;
+ window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+ const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(id);document.head.appendChild(s);
+ const ns=document.createElement('noscript');ns.innerHTML='<iframe src="https://www.googletagmanager.com/ns.html?id='+encodeURIComponent(id)+'" height="0" width="0" style="display:none;visibility:hidden"></iframe>';document.body.prepend(ns);
+}
+loadContent();
